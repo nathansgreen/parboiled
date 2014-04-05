@@ -31,6 +31,7 @@ import org.objectweb.asm.tree.LabelNode;
 import org.objectweb.asm.tree.LocalVariableNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.analysis.BasicValue;
+import org.objectweb.asm.Opcodes;
 import org.parboiled.BaseParser;
 import org.parboiled.common.StringUtils;
 import org.parboiled.support.Var;
@@ -71,7 +72,7 @@ class RuleMethod extends MethodNode {
 
     public RuleMethod(Class<?> ownerClass, int access, String name, String desc, String signature, String[] exceptions,
                       boolean hasExplicitActionOnlyAnno, boolean hasDontLabelAnno, boolean hasSkipActionsInPredicates) {
-        super(access, name, desc, signature, exceptions);
+        super(Opcodes.ASM4, access, name, desc, signature, exceptions);
         this.ownerClass = ownerClass;
         parameterCount = Type.getArgumentTypes(desc).length;
         hasCachedAnnotation = parameterCount == 0;
